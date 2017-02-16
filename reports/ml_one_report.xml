@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <template id="ml_one_report_view">
+            <t t-call="report.html_container">
+                <t t-call="report.internal_layout">
+                <!-- <t t-call="ml_quality.ml_template_header"> -->
+                    <t t-foreach="docs" t-as="doc">                    
+                        <div class="page">
+                            <link rel='stylesheet' href='/ml_quality/static/src/css/mystyle.css'/>
+                            <strong>Product code:</strong>
+                            <span t-field="doc.product_code"/>
+                            <strong>Product description:</strong>
+                            <span t-field="doc.product_refcli"/>
+                            <t t-foreach="doc.product_process_line" t-as="process">
+                                <t t-foreach="process.process_id" t-as="tp">
+                                    <t t-if="tp.process_cod == '09'">
+                                        <table class="table_bend">
+                                            <caption>
+                                                <span>Inspeção do processo de dobra / Dimensões do desenho - Cód.:</span> 
+                                                <span t-field="process.process_id"/>                                                         
+                                            </caption>
+                                            <thead>
+                                                <tr>
+                                                    <th class="dtag">Tag</th>
+                                                    <th class="espf">Especificado</th>
+                                                    <th class="fnd">Encontrado</th>
+                                                    <th class="fnd">Método de medição</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <t t-foreach='process.process_line' t-as='pr'>
+                                                <t t-if="'CC' in pr.dimensions_check">
+                                                    <tr>
+                                                        <td style="font-weight: bold; font-style: oblique;">
+                                                            <span t-field="pr.dimensions_check"/> 
+                                                        </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </t>
+                                                <t t-if="not 'CC' in pr.dimensions_check">
+                                                    <tr>
+                                                        <td>
+                                                            <span t-field="pr.dimensions_check"/> 
+                                                        </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </t>
+                                            </t>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th>Plano de reação</th>
+                                                    <td colspan="3">Parar o processo e comunicar a inspeção de Qualidade</td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>                          
+                                    </t>
+                                    <t t-if="tp.process_cod == '24'">
+                                        <strong>Calandra</strong>
+                                        <span t-field="process.process_id"/>
+                                        <div t-foreach='process.process_line' t-as='pr'>                           
+                                            <strong>values:</strong>
+                                            <span t-field="pr.dimensions_check"/>
+                                        </div>
+                                    </t>
+                                </t>
+                            </t>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <report id="ml_one_report"
+                name="ml_quality.ml_one_report_view"
+                model="ml.quality"
+                report_type="qweb-pdf"
+                string="Report"/>
+
+        <!-- <record id="ml_one_report_report" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="paperformat_label"/>
+        </record> -->
+    </data>
+</odoo>

@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>		
+		<record id="ml_quality_form" model="ir.ui.view">
+			<field name="name"> ML Quality Form</field>
+			<field name="model">ml.quality</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<group>
+							<field name="product_code"/>
+							<field name="product_refcli"/>
+						</group>
+						<notebook colspan="4">
+							<page string="Process">
+								<field name="product_process_line" options="{'no_create': True}">
+									<form>
+										<field name="process_id" options="{'no_create': True, 'no_open' : True}"/>
+										<notebook>
+											<page string="Dimensions Check">
+												<field name="process_line">
+													<form>
+														<field name="dimensions_check"/>
+													</form>
+													<tree string="Dimensions">
+														<field name="dimensions_check"/>
+													</tree>
+												</field>
+											</page>
+										</notebook>
+									</form>
+								</field>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="ml_quality_tree" model="ir.ui.view">
+			<field name="name">ML Quality List</field>
+			<field name="model">ml.quality</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="product_code"/>
+					<field name="product_refcli"/>
+				</tree>
+			</field>
+		</record>
+
+		<act_window 
+			id="ml_quality_action"
+			name="ML Drawings"
+			res_model="ml.quality"
+			/>
+		
+		<menuitem
+			id="ml_quality_menu"
+			name="Quality Forms"
+			action="ml_quality_action"
+			parent="label.menu_label"
+			sequence="4"
+			/>
+	</data>
+</odoo>
