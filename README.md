@@ -1,0 +1,1 @@
+# odoo_ml_quality_module
