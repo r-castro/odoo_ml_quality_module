@@ -18,7 +18,6 @@ class MlQuality(models.Model):
 
 	product_code = fields.Integer('Product Code', required=True)
 	product_refcli = fields.Char('Product Ref. Client', readonly=True)
-	#process_ids = fields.Many2many('ml.process', 'ml_quality_process_rel', 'quality_id', 'process_id', string="Process")
 	product_process_line = fields.One2many('process.line', 'product_code_id', string='Process Line')
 
 	@api.model
@@ -62,6 +61,14 @@ class MlQuality(models.Model):
 
 
 	def search_product(self, product):
+		"""
+		function get values from database "Gestor"
+		Args:
+			product (str): value from user insertion.
+		Returns:
+			product_values (dic): return dictionary {product_code: (int), product_refcli: (str), process_ids: (str)}
+		"""
+
 		product_values = {}
 
 		con = fdb.connect(
@@ -90,6 +97,13 @@ class MlQuality(models.Model):
 
 
 	def return_process_as_list(self, process):
+		"""
+		function get process values is returns process id 
+		Args:
+			process (str): value from database search.
+		Returns:
+			process_id_list (list): return a ids list (int)
+		"""
 		process_list = []
 		process_id_list = []
 
