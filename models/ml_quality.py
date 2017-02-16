@@ -1,8 +1,6 @@
-import logging
 import fdb
 from odoo import models, fields, api, exceptions
 
-_logger = logging.getLogger(__name__)
 
 class MlQuality(models.Model):
 	"""docstring for MlQuality"""
