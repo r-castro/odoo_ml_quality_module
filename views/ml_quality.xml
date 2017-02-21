@@ -11,6 +11,7 @@
 						<group>
 							<field name="product_code"/>
 							<field name="product_refcli"/>
+							<field name="product_cli_name"/>
 						</group>
 						<notebook colspan="4">
 							<page string="Process">
@@ -46,6 +47,7 @@
 				<tree>
 					<field name="product_code"/>
 					<field name="product_refcli"/>
+					<field name="product_cli_name"/>
 				</tree>
 			</field>
 		</record>

@@ -11,7 +11,6 @@
 	'data': [
 		'views/ml_quality.xml',
 		'reports/ml_one_report.xml',
-		'reports/ml_template_header.xml'
 	],
 	'demo': [],
 	"active": True,

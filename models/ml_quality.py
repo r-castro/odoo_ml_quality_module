@@ -15,8 +15,9 @@ class MlQuality(models.Model):
     ]
 
 	product_code = fields.Integer('Product Code', required=True)
-	product_refcli = fields.Char('Product Ref. Client', readonly=True)
+	product_refcli = fields.Char('Product Ref. Client')
 	product_process_line = fields.One2many('process.line', 'product_code_id', string='Process Line')
+	product_cli_name = fields.Char('Client', readonly=True)
 
 	@api.model
 	def create(self, vals):
@@ -32,6 +33,7 @@ class MlQuality(models.Model):
 			new_vals['product_code'] = gestor_values['product_code']
 			new_vals['product_refcli'] = gestor_values['product_refcli']
 			new_vals['product_process_line'] = process_list
+			new_vals['product_cli_name'] = gestor_values['product_cli_name']
 			return super(MlQuality, self).create(new_vals)
 		else:
 			raise exceptions.UserError('Product code not found!')
@@ -40,22 +42,30 @@ class MlQuality(models.Model):
 	@api.multi
 	def write(self, vals):
 		res = vals
-		if 'product_code' in vals:
-			gestor_values = self.search_product(vals['product_code'])
-			product_values = self.return_process_as_list(gestor_values['process_ids'])
-			process_list = []
+		product = self.get_product()
+		gestor_values = self.search_product(str(product))
+		product_values = self.return_process_as_list(gestor_values['process_ids'])
+		process_list = []
 
-			for a in product_values:
-				process_list.append((0,0,{'product_code_id': vals.get(id), 'process_id': int(a)}))
-		
-			if len(gestor_values) != 0:
-				res['product_code'] = gestor_values['product_code']
-				res['product_refcli'] = gestor_values['product_refcli']	
-				res['product_process_line'] = process_list					
-			else:
-				raise exceptions.UserError('Product code not found!')
+		for a in product_values:
+			process_list.append((0,0,{'product_code_id': vals.get(id), 'process_id': int(a)}))
+	
+		if len(gestor_values) != 0:
+			res['product_code'] = gestor_values['product_code']
+			res['product_refcli'] = gestor_values['product_refcli']	
+			res['product_process_line'] = process_list	
+			res['product_cli_name'] = gestor_values['product_cli_name']				
+		else:
+			raise exceptions.UserError('Product code not found!')
 		
 		return super(MlQuality, self).write(res)
+
+
+	@api.multi
+	def get_product(self):
+		for res in self:
+			product = res.product_code
+		return product
 
 
 	def search_product(self, product):
@@ -74,21 +84,24 @@ class MlQuality(models.Model):
         	database='/Datos/gdb/gestor.gdb',
         	user='SYSDBA',
         	password='masterkey',
-        	charset='iso8859_2'
+        	charset='iso8859_1'
 		)
 
 		cur = con.cursor()
 
 		cur.execute("""
-               SELECT REF_N, REF_C, RUTA_A_SEGUIR FROM PIEZAS
-               WHERE REF_N = """ + str(product)
+               SELECT a.REF_N, a.REF_C, a.RUTA_A_SEGUIR, b.NOM FROM PIEZAS AS a
+               INNER JOIN CLIENTES AS b
+               ON a.CODCLIENTE = b.CODIGO
+               WHERE a.REF_N = """ + str(product)
         )
 
 		for value in cur:
 			product_values = {
 				'product_code': value[0],
 				'product_refcli': value[1],
-				'process_ids': value[2]
+				'process_ids': value[2],
+				'product_cli_name': value[3]
 			}
 
 		return product_values
@@ -114,5 +127,3 @@ class MlQuality(models.Model):
 				process_id_list.append(int(ids.id))
 
 		return process_id_list
-			
-

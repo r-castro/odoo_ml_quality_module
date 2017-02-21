@@ -3,15 +3,39 @@
     <data>
         <template id="ml_one_report_view">
             <t t-call="report.html_container">
-                <t t-call="report.internal_layout">
-                <!-- <t t-call="ml_quality.ml_template_header"> -->
+                <t t-call="report.external_ml">                   
                     <t t-foreach="docs" t-as="doc">                    
                         <div class="page">
                             <link rel='stylesheet' href='/ml_quality/static/src/css/mystyle.css'/>
-                            <strong>Product code:</strong>
-                            <span t-field="doc.product_code"/>
-                            <strong>Product description:</strong>
-                            <span t-field="doc.product_refcli"/>
+                            <table class="t_header">
+                                <tr>
+                                    <td>
+                                        <strong>Pedido N°</strong>
+                                    </td>
+                                    <td>
+                                        ______________
+                                    </td>
+                                    <td>
+                                        
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Ref. Interna:</strong>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.product_code"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Ref. do cliente:</strong>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.product_refcli"/>
+                                    </td>
+                                </tr>
+                            </table>
                             <t t-foreach="doc.product_process_line" t-as="process">
                                 <t t-foreach="process.process_id" t-as="tp">
                                     <t t-if="tp.process_cod == '09'">
@@ -25,14 +49,14 @@
                                                     <th class="dtag">Tag</th>
                                                     <th class="espf">Especificado</th>
                                                     <th class="fnd">Encontrado</th>
-                                                    <th class="fnd">Método de medição</th>
+                                                    <th class="dim_m">Método de medição</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody class="line_process">
                                             <t t-foreach='process.process_line' t-as='pr'>
                                                 <t t-if="'CC' in pr.dimensions_check">
                                                     <tr>
-                                                        <td style="font-weight: bold; font-style: oblique;">
+                                                        <td class="critical_dim">
                                                             <span t-field="pr.dimensions_check"/> 
                                                         </td>
                                                         <td></td>
@@ -79,7 +103,7 @@
         <report id="ml_one_report"
                 name="ml_quality.ml_one_report_view"
                 model="ml.quality"
-                report_type="qweb-pdf"
+                report_type="qweb-html"
                 string="Report"/>
 
         <!-- <record id="ml_one_report_report" model="ir.actions.report.xml">
