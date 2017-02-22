@@ -42,10 +42,99 @@ th.dim_m {
 
 td.critical_dim {
 	font-weight: bold;
-	background-color: #F5F5F5;
 }
 
-table.
+table.t_header {
+	font-family: "Arial", sans-serif;
+	width: 100%;
+}
 
+td.td_header {
+	text-align: left;
+	font-size: 14px;
+	padding: 10px;
+	border: 0px solid;
+}
+
+td.td_header_right {
+	font-size: 14px;
+	padding: 10px;
+	width: 15%;
+	border: 0px solid;
+}
+
+table.acab_sup {
+	font-family: "Arial", sans-serif;
+	border-collapse: collapse;
+	border: 1px solid #F5F5F5;
+	width: 100%;
+	border-radius: 2px;
+}
+
+th.ac1 {
+	width: 16%;
+	font-size: 8px;
+	background-color: #F5F5F5;
+	vertical-align: middle;
+}
+
+th.ac2 {
+	width: 12%;
+	font-size: 8px;
+	background-color: #F5F5F5;
+	vertical-align: middle;
+}
+
+th.ac3 {
+	width: 12%;
+	font-size: 8px;
+	background-color: #F5F5F5;
+	vertical-align: middle;
+}
+
+th.ac4 {
+	width: 10%;
+	font-size: 8px;
+	background-color: #F5F5F5;
+	vertical-align: middle;
+}
+
+th.ac5 {
+	width: 22%;
+	font-size: 8px;
+	background-color: #F5F5F5;
+	vertical-align: middle;
+}
+
+th.ac6 {
+	width: 12%;
+	font-size: 8px;
+	background-color: #F5F5F5;
+	vertical-align: middle;
+}
+
+th.ac7 {
+	width: 10%;
+	font-size: 8px;
+	background-color: #F5F5F5;
+	vertical-align: middle;
+}
+
+th.ac8 {
+	font-size: 8px;
+	background-color: #F5F5F5;
+	vertical-align: middle;
+}
+
+td.t_space {
+	width: 11%;
+	font-size: 8px;
+	vertical-align: middle;
+}
+
+td.t_qld1 {
+	font-size: 8px;
+	vertical-align: middle;
+}
 
 

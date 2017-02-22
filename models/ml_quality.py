@@ -39,26 +39,26 @@ class MlQuality(models.Model):
 			raise exceptions.UserError('Product code not found!')
 
 		
-	@api.multi
-	def write(self, vals):
-		res = vals
-		product = self.get_product()
-		gestor_values = self.search_product(str(product))
-		product_values = self.return_process_as_list(gestor_values['process_ids'])
-		process_list = []
+	# @api.multi
+	# def write(self, vals):
+	# 	res = vals
+	# 	product = self.get_product()
+	# 	gestor_values = self.search_product(str(product))
+	# 	product_values = self.return_process_as_list(gestor_values['process_ids'])
+	# 	process_list = []
 
-		for a in product_values:
-			process_list.append((0,0,{'product_code_id': vals.get(id), 'process_id': int(a)}))
+	# 	for a in product_values:
+	# 		process_list.append((0,0,{'product_code_id': vals.get(id), 'process_id': int(a)}))
 	
-		if len(gestor_values) != 0:
-			res['product_code'] = gestor_values['product_code']
-			res['product_refcli'] = gestor_values['product_refcli']	
-			res['product_process_line'] = process_list	
-			res['product_cli_name'] = gestor_values['product_cli_name']				
-		else:
-			raise exceptions.UserError('Product code not found!')
+	# 	if len(gestor_values) != 0:
+	# 		res['product_code'] = gestor_values['product_code']
+	# 		res['product_refcli'] = gestor_values['product_refcli']	
+	# 		res['product_process_line'] = process_list	
+	# 		res['product_cli_name'] = gestor_values['product_cli_name']				
+	# 	else:
+	# 		raise exceptions.UserError('Product code not found!')
 		
-		return super(MlQuality, self).write(res)
+	# 	return super(MlQuality, self).write(res)
 
 
 	@api.multi

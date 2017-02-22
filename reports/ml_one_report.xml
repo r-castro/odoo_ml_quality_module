@@ -7,35 +7,47 @@
                     <t t-foreach="docs" t-as="doc">                    
                         <div class="page">
                             <link rel='stylesheet' href='/ml_quality/static/src/css/mystyle.css'/>
+                            <div>
+                                <span>Elaborado por:</span>
+                                <span t-field="doc.create_uid"/>
+                            </div>
+                            <div>
+                                <span>Alterado por:</span>
+                                <span t-field="doc.write_uid"/>
+                            </div>
                             <table class="t_header">
                                 <tr>
-                                    <td>
-                                        <strong>Pedido N°</strong>
+                                    <td class="td_header_right">
+                                        <strong>Pedido N°:</strong>
                                     </td>
-                                    <td>
+                                    <td class="td_header">
                                         ______________
                                     </td>
-                                    <td>
-                                        
-                                    </td>
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td class="td_header_right">
                                         <strong>Ref. Interna:</strong>
                                     </td>
-                                    <td>
+                                    <td class="td_header">
                                         <span t-field="doc.product_code"/>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td>
+                                    <td class="td_header_right">
                                         <strong>Ref. do cliente:</strong>
                                     </td>
-                                    <td>
+                                    <td class="td_header">
                                         <span t-field="doc.product_refcli"/>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td class="td_header_right">
+                                        <strong>Cliente:</strong>
+                                    </td>
+                                    <td class="td_header">
+                                        <span t-field="doc.product_cli_name"/>
+                                    </td>
+                                </tr>
                             </table>
+                            <div style="border-bottom: 1px solid black;"></div>
                             <t t-foreach="doc.product_process_line" t-as="process">
                                 <t t-foreach="process.process_id" t-as="tp">
                                     <t t-if="tp.process_cod == '09'">
@@ -81,16 +93,132 @@
                                                     <th>Plano de reação</th>
                                                     <td colspan="3">Parar o processo e comunicar a inspeção de Qualidade</td>
                                                 </tr>
+                                                <table class="acab_sup">
+                                                    <caption>
+                                                        <span>Acabamento superficial</span>                                                       
+                                                    </caption>
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="ac1">Especificado</th>
+                                                            <th class="ac2">Isento de marcas Profundas</th>
+                                                            <th class="ac3">Isento de Trinca região de Dobra</th>
+                                                            <th class="ac4">Isento de Rebarbas</th>
+                                                            <th class="ac5" colspan="2">Responsavel pela Fabricação</th>
+                                                            <th class="ac6">Nº de RNC? Quando aplicavel</th>
+                                                            <th class="ac7">Qtd Produzida</th>
+                                                            <th class="ac8">Qtd de Perdas</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="t_qld1">Encontrado (OK) (NOK)</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td colspan="2"></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="t_qld1">Inspeção da qualidade</td>
+                                                            <td class="t_qld1">Inspetor:</td>
+                                                            <td></td>
+                                                            <td class="t_qld1">Laudo para Dimensional</td>
+                                                            <td class="t_space"></td>
+                                                            <td class="t_qld1">Laudo para Aspecto Visual</td>
+                                                            <td></td>
+                                                            <td class="t_qld1">Visto</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Plano de reação</th>
+                                                            <td colspan="8">Parar o processo e abrir RNC para resolução do problema</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Resp. Fabricação:</th>
+                                                            <td colspan="2"></td>
+                                                            <th>Máquina:</th>
+                                                            <td></td>
+                                                            <th>Qtd. Lote:</th>
+                                                            <td></td>
+                                                            <th colspan="2">Data:</th>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </tfoot>
-                                        </table>                          
+                                        </table>                         
                                     </t>
                                     <t t-if="tp.process_cod == '24'">
-                                        <strong>Calandra</strong>
-                                        <span t-field="process.process_id"/>
-                                        <div t-foreach='process.process_line' t-as='pr'>                           
-                                            <strong>values:</strong>
-                                            <span t-field="pr.dimensions_check"/>
-                                        </div>
+                                        <table class="table_bend">
+                                            <caption>
+                                                <span>Inspeção do processo de calandra / Dimensões do desenho - Cód.:</span> 
+                                                <span t-field="process.process_id"/>                                                         
+                                            </caption>
+                                            <thead>
+                                                <tr>
+                                                    <th class="dtag">Tag</th>
+                                                    <th class="espf">Especificado</th>
+                                                    <th class="fnd">Encontrado</th>
+                                                    <th class="dim_m">Método de medição</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="line_process">
+                                            <t t-foreach='process.process_line' t-as='pr'>
+                                                <t t-if="'CC' in pr.dimensions_check">
+                                                    <tr>
+                                                        <td class="critical_dim">
+                                                            <span t-field="pr.dimensions_check"/> 
+                                                        </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </t>
+                                                <t t-if="not 'CC' in pr.dimensions_check">
+                                                    <tr>
+                                                        <td>
+                                                            <span t-field="pr.dimensions_check"/> 
+                                                        </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </t>
+                                            </t>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th rowspan="3">Plano de reação</th>
+                                                    <td colspan="3">Veirifcar dimensional conforme desenho</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="3">Amostragem de 1 peça por lote produzido</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="3">Atenção: registrar o numero do instrumento que foi utilizado para liberar as peças na calandra</td>
+                                                </tr>
+                                                <table class="acab_sup">
+                                                    <col style="width:16%" class="wd16"/>
+                                                    <col style="width:24%" class="wd12"/>
+                                                    <col style="width:12%" class="wd12"/>
+                                                    <col style="width:10%" class="wd10"/>
+                                                    <col style="width:11%" class="wd11"/>
+                                                    <col style="width:11%" class="wd11"/>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Resp. Fabricação:</th>
+                                                            <td></td>
+                                                            <th>Máquina:</th>
+                                                            <td></td>
+                                                            <th>Qtd. Lote:</th>
+                                                            <td></td>
+                                                            <th>Data:</th>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </tfoot>
+                                        </table>
                                     </t>
                                 </t>
                             </t>
@@ -103,7 +231,7 @@
         <report id="ml_one_report"
                 name="ml_quality.ml_one_report_view"
                 model="ml.quality"
-                report_type="qweb-html"
+                report_type="qweb-pdf"
                 string="Report"/>
 
         <!-- <record id="ml_one_report_report" model="ir.actions.report.xml">
