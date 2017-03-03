@@ -58,12 +58,22 @@
 			res_model="ml.quality"
 			/>
 		
+		<menuitem 
+			name="Megalaser"
+			id="menu_megalaser"
+			sequence="1"/>
 		<menuitem
 			id="ml_quality_menu"
-			name="Quality Forms"
+			name="Quality"
+			parent="menu_megalaser"
+			sequence="2"
+			/>
+		<menuitem
+			id="ml_quality_menu_form"
+			name="Quality Report Form"
 			action="ml_quality_action"
-			parent="label.menu_label"
-			sequence="4"
+			parent="ml_quality_menu"
+			sequence="3"
 			/>
 	</data>
 </odoo>
