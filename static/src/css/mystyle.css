@@ -9,7 +9,7 @@ table.table_bend {
 caption {
 	text-align: center;
 	font-weight: bold;
-	font-size: 11px;
+	font-size: 12px;
 	color: black;
 }
 
@@ -26,22 +26,28 @@ th.dtag {
 }
 
 th.espf {
-	width: 25%;
+	width: 12%;
 	background-color: #F5F5F5;
 }
 
 th.fnd {
-	width: 25%;
+	width: 12%;
 	background-color: #F5F5F5;
 }
 
 
 th.dim_m {
+	width: 15%;
+	background-color: #F5F5F5;
+}
+
+th.col6 {
 	background-color: #F5F5F5;
 }
 
 td.critical_dim {
 	font-weight: bold;
+	background-color: #F5F5F5;
 }
 
 table.t_header {
@@ -50,14 +56,13 @@ table.t_header {
 }
 
 td.td_header {
-	text-align: left;
-	font-size: 14px;
+	font-size: 12px;
 	padding: 10px;
 	border: 0px solid;
 }
 
 td.td_header_right {
-	font-size: 14px;
+	font-size: 12px;
 	padding: 10px;
 	width: 15%;
 	border: 0px solid;
@@ -69,59 +74,35 @@ table.acab_sup {
 	border: 1px solid #F5F5F5;
 	width: 100%;
 	border-radius: 2px;
+	
 }
 
 th.ac1 {
-	width: 16%;
-	font-size: 8px;
+	width: 50%;
+	font-size: 10px;
 	background-color: #F5F5F5;
 	vertical-align: middle;
 }
 
 th.ac2 {
-	width: 12%;
-	font-size: 8px;
+	width: 7%;
 	background-color: #F5F5F5;
 	vertical-align: middle;
 }
 
 th.ac3 {
-	width: 12%;
-	font-size: 8px;
+	width: 15%;
 	background-color: #F5F5F5;
 	vertical-align: middle;
 }
 
 th.ac4 {
-	width: 10%;
-	font-size: 8px;
+	width: 15%;
 	background-color: #F5F5F5;
 	vertical-align: middle;
 }
 
 th.ac5 {
-	width: 22%;
-	font-size: 8px;
-	background-color: #F5F5F5;
-	vertical-align: middle;
-}
-
-th.ac6 {
-	width: 12%;
-	font-size: 8px;
-	background-color: #F5F5F5;
-	vertical-align: middle;
-}
-
-th.ac7 {
-	width: 10%;
-	font-size: 8px;
-	background-color: #F5F5F5;
-	vertical-align: middle;
-}
-
-th.ac8 {
-	font-size: 8px;
 	background-color: #F5F5F5;
 	vertical-align: middle;
 }
@@ -133,7 +114,7 @@ td.t_space {
 }
 
 td.t_qld1 {
-	font-size: 8px;
+	font-size: 10px;
 	vertical-align: middle;
 }
 

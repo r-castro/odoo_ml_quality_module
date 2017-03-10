@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <template id="ml_two_report_view">
+            <t t-call="report.html_container">                   
+                    <t t-foreach="docs" t-as="doc"> 
+                        <div class="header">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <div>
+                                        <img src="/ml_quality/static/img/logomegalaser.png" style="max-height: 25px;"/>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 text-center">
+                                    <strong>Plano de Controle - Qualidade - ML-2</strong>
+                                </div>
+                                <div class="col-xs-3 text-right">
+                                    <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d-%m-%Y %H:%M')" style="font-size: 10px;"/>
+                                </div>
+                            </div>
+                            <div class="row zero_min_height">
+                                <div class="col-xs-12">
+                                    <div style="border-bottom: 1px solid black;"></div>
+                                </div>
+                            </div>
+                        </div>                   
+                        <div class="page">
+                            <link rel='stylesheet' href='/ml_quality/static/src/css/mystyle.css'/>
+                            <t t-foreach="doc.product_process_line" t-as="process">
+                                <t t-foreach="process.process_id" t-as="tp">
+                                    <t t-if="tp.process_cod == '01' or cod == '02'">
+                                        <table class="t_header">
+                                            <tr>
+                                                <td class="td_header_right">
+                                                    <strong>Pedido N°:</strong>
+                                                </td>
+                                                <td class="td_header">
+                                                    ______________
+                                                </td>
+                                                <td class="td_header_right">
+                                                    <strong>Order N°:</strong>
+                                                </td>
+                                                <td class="td_header">
+                                                    ______________
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="td_header_right">
+                                                    <strong>Ref. Interna:</strong>
+                                                </td>
+                                                <td class="td_header">
+                                                    <span t-field="doc.product_code"/>
+                                                </td>
+                                                <td class="td_header_right">
+                                                    <strong>Ref. do cliente:</strong>
+                                                </td>
+                                                <td class="td_header">
+                                                    <span t-field="doc.product_refcli"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="td_header_right">
+                                                    <strong>Cliente:</strong>
+                                                </td>
+                                                <td class="td_header" colspan="3">
+                                                    <span t-field="doc.product_cli_name"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div style="border-bottom: 1px solid black;"></div>
+                                        <table class="table_bend">
+                                            <caption>
+                                                <span>Inspeção do processo de Usinagem / Dimensões do desenho - Cód.:</span> 
+                                                <span t-field="process.process_id"/>                                                         
+                                            </caption>
+                                            <thead>
+                                                <tr>
+                                                    <th class="dtag">TAG</th>
+                                                    <th class="espf">ESPECIFICADO</th>
+                                                    <th class="fnd">ENCONTRADO</th>
+                                                    <th class="dtag">MÉTODO DE MEDIÇÃO</th>
+                                                    <th class="dtag">OPERADOR</th>
+                                                    <th class="dtag">CENTRO DE TRABALHO</th>
+                                                    <th class="col6">INSP. DA QUALIDADE</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="line_process">
+                                            <t t-foreach='process.process_line' t-as='pr'>
+                                                <t t-if="'CC' in pr.dimensions_check">
+                                                    <tr>
+                                                        <td class="critical_dim">
+                                                            <span t-field="pr.dimensions_check"/> 
+                                                        </td>
+                                                        <td>
+                                                            <span t-field="pr.dim_especified"/>
+                                                        </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </t>
+                                                <t t-if="not 'CC' in pr.dimensions_check">
+                                                    <tr>
+                                                        <td>
+                                                            <span t-field="pr.dimensions_check"/> 
+                                                        </td>
+                                                        <td>
+                                                            <span t-field="pr.dim_especified"/>
+                                                        </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </t>
+                                            </t>
+                                            </tbody>
+                                            <tfoot>
+                                                <table class="table_bend">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="ac5" style="text-align: center;">PLANO DE REAÇÃO</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Para qualquer não conformidade encontrada na inspeção dimensional e visual, parar o processo de fabricação e comunicar o setor da qualidade</td> 
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <table class="table_bend">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="ac5" style="text-align: center;">INSTRUÇÕES / OBSERVAÇÕES</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1 - O operador deve realizar o dimensional das cotas do desenho e registrá-las na tabela acima</td> 
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2 - O operador deve registrar o numero do instrumento de medição utilizado.</td> 
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </tfoot>
+                                        </table>
+                                        <p style="page-break-before:always;"> </p>                         
+                                    </t>
+                                    <t t-if="tp.process_cod == '90'">
+                                        <table class="t_header">
+                                            <tr>
+                                                <td class="td_header_right">
+                                                    <strong>Pedido N°:</strong>
+                                                </td>
+                                                <td class="td_header">
+                                                    ______________
+                                                </td>
+                                                <td class="td_header_right">
+                                                    <strong>Order N°:</strong>
+                                                </td>
+                                                <td class="td_header">
+                                                    ______________
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="td_header_right">
+                                                    <strong>Ref. Interna:</strong>
+                                                </td>
+                                                <td class="td_header">
+                                                    <span t-field="doc.product_code"/>
+                                                </td>
+                                                <td class="td_header_right">
+                                                    <strong>Ref. do cliente:</strong>
+                                                </td>
+                                                <td class="td_header">
+                                                    <span t-field="doc.product_refcli"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="td_header_right">
+                                                    <strong>Cliente:</strong>
+                                                </td>
+                                                <td class="td_header" colspan="3">
+                                                    <span t-field="doc.product_cli_name"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div style="border-bottom: 1px solid black;"></div>
+                                        <table class="table_bend">
+                                            <caption>
+                                                <span>Inspeção do processo de montagem / Dimensões do desenho - Cód.:</span> 
+                                                <span t-field="process.process_id"/>                                                         
+                                            </caption>
+                                            <thead>
+                                                <tr>
+                                                    <th class="dtag">TAG</th>
+                                                    <th class="espf">ESPECIFICADO</th>
+                                                    <th class="fnd">ENCONTRADO</th>
+                                                    <th class="dtag">MÉTODO DE MEDIÇÃO</th>
+                                                    <th class="dtag">OPERADOR</th>
+                                                    <th class="dtag">CENTRO DE TRABALHO</th>
+                                                    <th class="col6">INSP. DA QUALIDADE</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="line_process">
+                                            <t t-foreach='process.process_line' t-as='pr'>
+                                                <t t-if="'CC' in pr.dimensions_check">
+                                                    <tr>
+                                                        <td class="critical_dim">
+                                                            <span t-field="pr.dimensions_check"/> 
+                                                        </td>
+                                                        <td>
+                                                            <span t-field="pr.dim_especified"/>
+                                                        </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </t>
+                                                <t t-if="not 'CC' in pr.dimensions_check">
+                                                    <tr>
+                                                        <td>
+                                                            <span t-field="pr.dimensions_check"/> 
+                                                        </td>
+                                                        <td>
+                                                            <span t-field="pr.dim_especified"/>
+                                                        </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </t>
+                                            </t>
+                                            </tbody>
+                                            <tfoot>
+                                                <table class="acab_sup">
+                                                    <caption>
+                                                        <span>Inspeção visual pré-solda</span>                                                       
+                                                    </caption>
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="ac1">VISUAL</th>
+                                                            <th class="ac2">S/N</th>
+                                                            <th class="ac3">OPERADOR</th>
+                                                            <th class="ac4">INSP. DE QUALIDADE</th>
+                                                            <th class="ac5">QTDE. NÃO CONFORME</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="t_qld1">Isento de cantos agudos?</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="t_qld1">Isento de carepas ou materiais estranhos na região a ser soldada?</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <table class="table_bend">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="ac5" style="text-align: center;">PLANO DE REAÇÃO</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Para qualquer não conformidade encontrada na inspeção dimensional e visual, parar o processo de fabricação e comunicar o setor da qualidade</td> 
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <table class="table_bend">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="ac5" style="text-align: center;">INSTRUÇÕES / OBSERVAÇÕES</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1 - O operador deve realizar o dimensional das cotas do desenho e registrá-las na tabela acima</td> 
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2 - O operador deve registrar o numero do instrumento de medição utilizado.</td> 
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </tfoot>
+                                        </table> 
+                                        <p style="page-break-before:always;"> </p>
+                                    </t>
+                                    <t t-if="tp.process_cod == '10'">                                        
+                                        <table class="t_header">
+                                            <tr>
+                                                <td class="td_header_right">
+                                                    <strong>Pedido N°:</strong>
+                                                </td>
+                                                <td class="td_header">
+                                                    ______________
+                                                </td>
+                                                <td class="td_header_right">
+                                                    <strong>Order N°:</strong>
+                                                </td>
+                                                <td class="td_header">
+                                                    ______________
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="td_header_right">
+                                                    <strong>Ref. Interna:</strong>
+                                                </td>
+                                                <td class="td_header">
+                                                    <span t-field="doc.product_code"/>
+                                                </td>
+                                                <td class="td_header_right">
+                                                    <strong>Ref. do cliente:</strong>
+                                                </td>
+                                                <td class="td_header">
+                                                    <span t-field="doc.product_refcli"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="td_header_right">
+                                                    <strong>Cliente:</strong>
+                                                </td>
+                                                <td class="td_header" colspan="3">
+                                                    <span t-field="doc.product_cli_name"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div style="border-bottom: 1px solid black;"></div>
+                                        <table class="table_bend">
+                                            <caption>
+                                                <span>Inspeção do processo de Solda / Dimensões do desenho - Cód.:</span> 
+                                                <span t-field="process.process_id"/>                                                         
+                                            </caption>
+                                            <thead>
+                                                <tr>
+                                                    <th class="dtag">TAG</th>
+                                                    <th class="espf">ESPECIFICADO</th>
+                                                    <th class="fnd">ENCONTRADO</th>
+                                                    <th class="dtag">MÉTODO DE MEDIÇÃO</th>
+                                                    <th class="dtag">OPERADOR</th>
+                                                    <th class="dtag">CENTRO DE TRABALHO</th>
+                                                    <th class="col6">INSP. DA QUALIDADE</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="line_process">
+                                            <t t-foreach='process.process_line' t-as='pr'>
+                                                <t t-if="'CC' in pr.dimensions_check">
+                                                    <tr>
+                                                        <td class="critical_dim">
+                                                            <span t-field="pr.dimensions_check"/> 
+                                                        </td>
+                                                        <td>
+                                                            <span t-field="pr.dim_especified"/>
+                                                        </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </t>
+                                                <t t-if="not 'CC' in pr.dimensions_check">
+                                                    <tr>
+                                                        <td>
+                                                            <span t-field="pr.dimensions_check"/> 
+                                                        </td>
+                                                        <td>
+                                                            <span t-field="pr.dim_especified"/>
+                                                        </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </t>
+                                            </t>
+                                            </tbody>
+                                            <tfoot>
+                                                <table class="acab_sup">
+                                                    <caption>
+                                                        <span>Inspeção visual pós-solda</span>                                                       
+                                                    </caption>
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="ac1">VISUAL</th>
+                                                            <th class="ac2">S/N</th>
+                                                            <th class="ac3">OPERADOR</th>
+                                                            <th class="ac4">INSP. DE QUALIDADE</th>
+                                                            <th class="ac5">QTDE. NÃO CONFORME</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="t_qld1">Isento de poros?</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="t_qld1">Isento de carepas ou materiais estranhos na região soldada?</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="t_qld1">Isento de falhas na região soldada?</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="t_qld1">Isento de respingos na região soldada?</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="t_qld1">Isento de respingos descontinuidades?</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="t_qld1">Isento de empenamentos?</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <table class="table_bend">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="ac5" style="text-align: center;">PLANO DE REAÇÃO</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Para qualquer não conformidade encontrada na inspeção dimensional e visual, parar o processo de fabricação e comunicar o setor da qualidade</td> 
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <table class="table_bend">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="ac5" style="text-align: center;">INSTRUÇÕES / OBSERVAÇÕES</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1 - O operador deve realizar o dimensional das cotas do desenho e registrá-las na tabela acima</td> 
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2 - O operador deve registrar o numero do instrumento de medição utilizado.</td> 
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </tfoot>
+                                        </table>
+                                        <p style="page-break-before:always;"> </p> 
+                                    </t>
+                                    <t t-if="tp.process_cod == '07'">                                        
+                                        <table class="t_header">
+                                            <tr>
+                                                <td class="td_header_right">
+                                                    <strong>Pedido N°:</strong>
+                                                </td>
+                                                <td class="td_header">
+                                                    ______________
+                                                </td>
+                                                <td class="td_header_right">
+                                                    <strong>Order N°:</strong>
+                                                </td>
+                                                <td class="td_header">
+                                                    ______________
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="td_header_right">
+                                                    <strong>Ref. Interna:</strong>
+                                                </td>
+                                                <td class="td_header">
+                                                    <span t-field="doc.product_code"/>
+                                                </td>
+                                                <td class="td_header_right">
+                                                    <strong>Ref. do cliente:</strong>
+                                                </td>
+                                                <td class="td_header">
+                                                    <span t-field="doc.product_refcli"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="td_header_right">
+                                                    <strong>Cliente:</strong>
+                                                </td>
+                                                <td class="td_header" colspan="3">
+                                                    <span t-field="doc.product_cli_name"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div style="border-bottom: 1px solid black;"></div>
+                                        <table class="acab_sup">
+                                            <caption>
+                                                <span>Inspeção visual pós-jateamento</span>                                                       
+                                            </caption>
+                                            <thead>
+                                                <tr>
+                                                    <th class="ac1">VISUAL</th>
+                                                    <th class="ac2">S/N</th>
+                                                    <th class="ac3">OPERADOR</th>
+                                                    <th class="ac4">INSP. DE QUALIDADE</th>
+                                                    <th class="ac5">QTDE. NÃO CONFORME</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="t_qld1">Isento de carepas?</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="t_qld1">Todas as regiões da peça estão jateadas?</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table class="table_bend">
+                                            <caption>
+                                                <span>Inspeção do processo de Pintura - Cód.:</span> 
+                                                <span t-field="process.process_id"/>                                                         
+                                            </caption>
+                                            <thead>
+                                                <tr>
+                                                    <th class="dtag">TAG</th>
+                                                    <th class="espf">ESPECIFICADO</th>
+                                                    <th class="fnd">ENCONTRADO</th>
+                                                    <th class="dtag">MÉTODO DE MEDIÇÃO</th>
+                                                    <th class="dtag">OPERADOR</th>
+                                                    <th class="dtag">CENTRO DE TRABALHO</th>
+                                                    <th class="col6">INSP. DA QUALIDADE</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="line_process">
+                                            <t t-foreach='process.process_line' t-as='pr'>
+                                                <t t-if="'CC' in pr.dimensions_check">
+                                                    <tr>
+                                                        <td class="critical_dim">
+                                                            <span t-field="pr.dimensions_check"/> 
+                                                        </td>
+                                                        <td>
+                                                            <span t-field="pr.dim_especified"/>
+                                                        </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </t>
+                                                <t t-if="not 'CC' in pr.dimensions_check">
+                                                    <tr>
+                                                        <td>
+                                                            <span t-field="pr.dimensions_check"/> 
+                                                        </td>
+                                                        <td>
+                                                            <span t-field="pr.dim_especified"/>
+                                                        </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </t>
+                                            </t>
+                                            </tbody>
+                                            <tfoot>
+                                                <table class="table_bend">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="ac5" style="text-align: center;">PLANO DE REAÇÃO</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Para qualquer não conformidade encontrada na inspeção dimensional e visual, parar o processo de fabricação e comunicar o setor da qualidade</td> 
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <table class="table_bend">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="ac5" style="text-align: center;">INSTRUÇÕES / OBSERVAÇÕES</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1 - O operador deve executar o jateamento em 100% das áreas da peça, exceto onde indicado no desenho</td> 
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2 - O operador deve garantir a rugosidade para o processo de pintura</td> 
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </tfoot>
+                                        </table> 
+                                    </t>
+                                </t>
+                            </t>
+                        </div>
+                        <div class="footer">
+                            <div class="row">
+                                <div class="row zero_min_height">
+                                    <div class="col-xs-12">
+                                        <div style="border-top: 1px solid black; padding: 5px;"></div>
+                                    </div>
+                                </div> 
+                                <div class="col-xs-6">
+                                    <div style="font-size: 8px;">
+                                        <span>Elaborado por:</span>
+                                        <span t-field="doc.create_uid"/>
+                                        <span> em </span>
+                                        <span t-field="doc.create_date"/>
+                                    </div>
+                                    <div style="font-size: 8px;">
+                                        <span>Alterado por:</span>
+                                        <span t-field="doc.write_uid"/>
+                                        <span> em </span>
+                                        <span t-field="doc.write_date"/>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    <ul class="list-inline" style="font-size: 8px;">
+                                        <li><span class="page"/></li>
+                                        <li>/</li>
+                                        <li><span class="topage"/></li>
+                                    </ul>
+                                </div>
+                            </div>   
+                        </div>
+                    </t>
+                </t>
+        </template>
+
+        <report id="ml_two_report"
+                name="ml_quality.ml_two_report_view"
+                model="ml.quality"
+                report_type="qweb-pdf"
+                string="Formulário ML-2"/>
+
+        <record id="ml_two_report" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="paperformat_quality"/>
+        </record>
+    </data>
+</odoo>

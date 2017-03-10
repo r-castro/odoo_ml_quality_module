@@ -10,7 +10,11 @@
 	'depends': ['base', 'report'],
 	'data': [
 		'views/ml_quality.xml',
+		'reports/report_paperformat.xml',
 		'reports/ml_one_report.xml',
+		'reports/ml_two_report.xml',
+		'security/user_groups.xml',
+		'security/ir.model.access.csv',
 	],
 	'demo': [],
 	"active": True,

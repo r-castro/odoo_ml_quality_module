@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+ml_quality_user,ml.quality.user,model_ml_quality,ml_quality.group_user,1,0,0,0
+ml_quality_manager,ml.quality.manager,model_ml_quality,ml_quality.group_manager,1,1,1,1
+ml_process_user,ml.process.user,model_ml_process,base.group_user,1,0,0,0
+ml_process_manager,ml.process.manager,model_ml_process,ml_quality.group_manager,1,1,1,1
+process_line_user,process.line.user,model_process_line,base.group_user,1,0,0,0
+process_line_manager,process.line.manager,model_process_line,ml_quality.group_manager,1,1,1,1
+quality_dimensions_user,quality.dimensions.user,model_quality_dimensions,base.group_user,1,0,0,0
+quality_dimensions_manager,quality.dimensions.manager,model_quality_dimensions,ml_quality.group_manager,1,1,1,1
+
+
