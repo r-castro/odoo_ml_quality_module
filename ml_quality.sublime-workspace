@@ -1,0 +1,303 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"get",
+				"gethostname\tfunction"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "models/ml_routes.py",
+			"settings":
+			{
+				"buffer_size": 242,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "reports/ml_two_report.xml",
+			"settings":
+			{
+				"buffer_size": 47632,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 320.0,
+		"last_filter": "p",
+		"selected_items":
+		[
+			[
+				"p",
+				"Package Control: Install Package"
+			],
+			[
+				"v",
+				"Virtualenv: Add directory"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"pa",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"Install Package Control"
+			]
+		],
+		"width": 435.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/rodrigo/Documents/projects/local/ml_quality",
+		"/home/rodrigo/Documents/projects/local/ml_quality/models",
+		"/home/rodrigo/Documents/projects/local/ml_quality/reports",
+		"/home/rodrigo/Documents/projects/local/ml_quality/security",
+		"/home/rodrigo/Documents/projects/local/ml_quality/static",
+		"/home/rodrigo/Documents/projects/local/ml_quality/static/img",
+		"/home/rodrigo/Documents/projects/local/ml_quality/static/src",
+		"/home/rodrigo/Documents/projects/local/ml_quality/static/src/css",
+		"/home/rodrigo/Documents/projects/local/ml_quality/views"
+	],
+	"file_history":
+	[
+		"/home/rodrigo/.config/sublime-text-3/Packages/User/Side Bar.sublime-settings",
+		"/home/rodrigo/.config/sublime-text-3/Packages/SideBarEnhancements/Side Bar.sublime-settings",
+		"/home/rodrigo/Documents/projects/local/ml_quality/reports/test.xml",
+		"/home/rodrigo/Documents/projects/local/ml_quality/models/ml_quality.py",
+		"/home/rodrigo/Documents/projects/local/ml_quality/models/ml_routes.py",
+		"/home/rodrigo/Documents/projects/local/ml_quality/ml_quality.sublime-project",
+		"/home/rodrigo/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/rodrigo/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/rodrigo/Documents/python_src_tests/test.html",
+		"/home/rodrigo/Documents/python_src_tests/python_general_tests.py",
+		"/home/rodrigo/.config/sublime-text-3/Packages/User/Python.sublime-settings"
+	],
+	"find":
+	{
+		"height": 0.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "models/ml_routes.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 242,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								242,
+								242
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": ".",
+									"selector": "source.python - string - comment - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								}
+							],
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "reports/ml_two_report.xml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 47632,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1889,
+								1889
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 180.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 47.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/Virtualenv/Python + Virtualenv.sublime-build",
+	"project": "ml_quality.sublime-project",
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 253.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

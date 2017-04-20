@@ -28,7 +28,7 @@
                             <link rel='stylesheet' href='/ml_quality/static/src/css/mystyle.css'/>
                             <t t-foreach="doc.product_process_line" t-as="process">
                                 <t t-foreach="process.process_id" t-as="tp">
-                                    <t t-if="tp.process_cod == '01' or cod == '02'">
+                                    <t t-if="tp.process_cod == '01' or tp.process_cod == '02' or tp.process_cod == '03' or tp.process_cod == '04' or tp.process_cod == '15'">
                                         <table class="t_header">
                                             <tr>
                                                 <td class="td_header_right">
